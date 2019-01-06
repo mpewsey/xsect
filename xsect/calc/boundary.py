@@ -34,7 +34,7 @@ def rotate2(x, angle, origin=(0, 0)):
     c, s = np.cos(angle), np.sin(angle)
     r = np.array([[c, -s], [s, c]])
 
-    x = np.array([r @ v for v in x])
+    x = np.array([np.dot(r, v) for v in x])
 
     return x + o
 
