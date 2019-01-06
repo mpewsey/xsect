@@ -1,0 +1,5 @@
+[run]
+source = xsect
+omit =
+    setup.py
+    xsect/data/_make_db.py

@@ -1,0 +1,2 @@
+.. automodule:: xsect.data
+   :members:
