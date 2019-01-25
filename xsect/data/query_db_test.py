@@ -19,4 +19,4 @@ def test_query_aisc_shapes():
 
 
 def test_filter_aisc():
-    filter_aisc("type='L'", 'area>28', order=['area'], columns=['name', 'area'])
+    filter_aisc(["type='L'", 'area>28'], order=['area'], columns=['name', 'area'])

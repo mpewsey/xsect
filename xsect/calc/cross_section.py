@@ -1,3 +1,4 @@
+from __future__ import division
 import numpy as np
 from ..data import query_aisc
 from .multi import multi_section_summary

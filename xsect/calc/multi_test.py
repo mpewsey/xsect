@@ -1,3 +1,4 @@
+from __future__ import division
 import numpy as np
 from pytest import approx
 from .cruciform import cruciform_points

@@ -1,5 +1,4 @@
-
-
+from __future__ import division
 from .angle import angle_points
 from .multi import multi_section_summary
 

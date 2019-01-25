@@ -1,15 +1,26 @@
-
-
+from __future__ import division
+import os
 import numpy as np
+import matplotlib
+if os.environ.get('DISPLAY', None) is None:
+    matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from .boundary import TOL, area, centroid, inertias, close_points, rotate2
 
 __all__ = [
-    'multi_dimensions', 'multi_area', 'multi_centroid', 'multi_inertias',
-    'multi_principal_inertias', 'multi_principal_angles', 'multi_gyradii',
-    'multi_principal_gyradii', 'multi_extreme_fibers',
-    'multi_principal_extreme_fibers', 'multi_elast_sect_mod',
-    'multi_principal_elast_sect_mod', 'multi_plot_section',
+    'multi_dimensions',
+    'multi_area',
+    'multi_centroid',
+    'multi_inertias',
+    'multi_principal_inertias',
+    'multi_principal_angles',
+    'multi_gyradii',
+    'multi_principal_gyradii',
+    'multi_extreme_fibers',
+    'multi_principal_extreme_fibers',
+    'multi_elast_sect_mod',
+    'multi_principal_elast_sect_mod',
+    'multi_plot_section',
     'multi_section_summary'
 ]
 

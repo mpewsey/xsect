@@ -1,13 +1,28 @@
-
-
+from __future__ import division
+import os
 import numpy as np
+import matplotlib
+if os.environ.get('DISPLAY', None) is None:
+    matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 __all__ = [
-    'rotate2', 'close_points', 'dimensions', 'area', 'centroid', 'inertias',
-    'principal_inertias', 'principal_angles', 'gyradii', 'principal_gyradii',
-    'extreme_fibers', 'principal_extreme_fibers', 'elast_sect_mod',
-    'principal_elast_sect_mod', 'plot_section', 'section_summary'
+    'rotate2',
+    'close_points',
+    'dimensions',
+    'area',
+    'centroid',
+    'inertias',
+    'principal_inertias',
+    'principal_angles',
+    'gyradii',
+    'principal_gyradii',
+    'extreme_fibers',
+    'principal_extreme_fibers',
+    'elast_sect_mod',
+    'principal_elast_sect_mod',
+    'plot_section',
+    'section_summary'
 ]
 
 TOL = 1e-8 # Tolerance for principal angles
@@ -34,7 +49,7 @@ def rotate2(x, angle, origin=(0, 0)):
     c, s = np.cos(angle), np.sin(angle)
     r = np.array([[c, -s], [s, c]])
 
-    x = np.array([r @ v for v in x])
+    x = np.array([np.dot(r, v) for v in x])
 
     return x + o
 

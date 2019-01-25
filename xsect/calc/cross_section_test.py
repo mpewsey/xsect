@@ -1,3 +1,4 @@
+from __future__ import division
 import pytest
 from .cross_section import CrossSection
 from .cruciform import cruciform_points

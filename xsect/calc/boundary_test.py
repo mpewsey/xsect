@@ -1,3 +1,4 @@
+from __future__ import division
 import numpy as np
 from pytest import approx
 from .boundary import *
@@ -51,6 +52,9 @@ def test_area():
 
     points = sample_angles(rand)
     sol = np.array([area(x) for x in points])
+
+    print(sol)
+    print(a)
 
     assert approx(sol, 0.01) == a
 

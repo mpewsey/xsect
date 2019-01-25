@@ -1,5 +1,3 @@
-
-
 import pandas as pd
 from ._make_db import DB_CONNECTION
 
@@ -95,15 +93,15 @@ def query_aisc_shapes(shape=None, metric=False, version=None):
     return cursor.fetchall()
 
 
-def filter_aisc(*conditions, order=[], columns=[], metric=False, version=None):
+def filter_aisc(conditions, order=[], columns=[], metric=False, version=None):
     """
     Returns a dataframe with the data for the specified AISC steel shape
     database query.
 
     Parameters
     ----------
-    conditions : str
-        Conditions to apply to the query.
+    conditions : list
+        A list of condition strings to apply to the query.
     order : list of str
         Column names for ordering data. If none specified, no ordering will
         be applied.
@@ -113,7 +111,7 @@ def filter_aisc(*conditions, order=[], columns=[], metric=False, version=None):
 
     Examples
     --------
-    >>> filter_aisc("type='L'", 'area>28', order=['area'], columns=['name', 'area'])
+    >>> filter_aisc(["type='L'", 'area>28'], order=['area'], columns=['name', 'area'])
                name  area
     0  L12X12X1-1/4  28.4
     1  L12X12X1-3/8  31.1

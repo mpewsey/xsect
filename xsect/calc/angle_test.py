@@ -1,3 +1,4 @@
+from __future__ import division
 import pytest
 from ..data import query_aisc
 from .angle import *
