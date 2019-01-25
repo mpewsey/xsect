@@ -1,0 +1,5 @@
+====================
+Release Notes v1.1.0
+====================
+
+* Updated package for compatibility with Python 2.7.

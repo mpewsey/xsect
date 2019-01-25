@@ -1,5 +1,4 @@
-
-
+from __future__ import division
 import numpy as np
 from .boundary import close_points, section_summary
 
@@ -106,14 +105,14 @@ def round_points(diameter, thickness=None, start=0, stop=2*np.pi, step=0.01):
         of more memory and computation time.
     """
     ro = 0.5 * diameter
-    n = np.ceil(abs(ro * (stop - start) / step))
+    n = int(np.ceil(abs(ro * (stop - start) / step)))
     if n < 2: n = 2
     ang = np.linspace(start, stop, n)
     points = ro * np.column_stack([np.cos(ang), np.sin(ang)])
 
     if thickness is not None:
         ri = ro - thickness
-        n = np.ceil(abs(ri * (stop - start) / step))
+        n = int(np.ceil(abs(ri * (stop - start) / step)))
         if n < 2: n = 2
         ang = np.linspace(stop, start, n)
         p = ri * np.column_stack([np.cos(ang), np.sin(ang)])

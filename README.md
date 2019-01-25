@@ -95,7 +95,7 @@ maximum tensile force, you could calculate its required cross sectional area
 and perform a filter similar to the below to get the lightest member:
 
 ```
->>> xsect.filter_aisc("type='L'", 'area>28', order=['unit_weight'])
+>>> xsect.filter_aisc(["type='L'", 'area>28'], order=['unit_weight'])
   type          name T_F  unit_weight  area     d
 0    L  L12X12X1-1/4   F         96.4  28.4  12.0
 1    L  L12X12X1-3/8   F        105.0  31.1  12.0
