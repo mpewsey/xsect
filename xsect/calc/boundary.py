@@ -1,5 +1,9 @@
 from __future__ import division
+import os
 import numpy as np
+import matplotlib
+if os.environ.get('DISPLAY', None) is None:
+    matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 __all__ = [
