@@ -77,7 +77,7 @@ for a specific shape. For example:
 
 
 This can be used to quickly generate a cross section by unwrapping the
-dictionary within the :class:`CrossSection` initializer:
+dictionary within the `CrossSection` initializer:
 
 ```
 >>> xsect.CrossSection('4L8x8x1.125', **odict)
