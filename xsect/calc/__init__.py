@@ -88,6 +88,20 @@ for round sections, such as rounds and pipes.
     round_summary
 
 
+Polygon Functions
+=================
+The following functions may be used to calculate the cross sectional properties
+for solid or thin walled polygon sections.
+
+.. plot:: ../examples/polygon_ex1.py
+
+.. autosummary::
+    :toctree: generated/
+
+    polygon_points
+    polygon_summary
+
+
 Angle Functions
 ===============
 The following functions may be used to calculate cross sectional properties
@@ -165,5 +179,6 @@ from .cruciform import *
 from .double_angle import *
 from .i_beam import *
 from .multi import *
+from .polygon import *
 from .round import *
 from .t_beam import *
