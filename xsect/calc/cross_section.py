@@ -97,8 +97,8 @@ class CrossSection():
         s = ['{}={!r}'.format(k, getattr(self, k)) for k in attrs]
         return '{}({})'.format(type(self).__name__, ', '.join(s))
 
-    @staticmethod
-    def from_points(name, add, subtract=[], is_round=False,
+    @classmethod
+    def from_points(cls, name, add, subtract=[], is_round=False,
                     include_meta=True, **kwargs):
         """
         Initializes a cross section from boundary points.
@@ -132,7 +132,7 @@ class CrossSection():
         odict['is_round'] = is_round
         odict.update(kwargs)
 
-        xsect = CrossSection(**odict)
+        xsect = cls(**odict)
 
         if not include_meta:
             xsect.meta.clear()
@@ -140,8 +140,8 @@ class CrossSection():
         return xsect
 
 
-    @staticmethod
-    def from_aisc(name, metric=False, version=None, include_meta=True):
+    @classmethod
+    def from_aisc(cls, name, metric=False, version=None, include_meta=True):
         """
         Initializes a cross section from the properties in the AISC database.
 
@@ -172,7 +172,7 @@ class CrossSection():
         if odict['type'] == 'PIPE':
             odict['is_round'] = True
 
-        xsect = CrossSection(**odict)
+        xsect = cls(**odict)
 
         if not include_meta:
             xsect.meta.clear()
