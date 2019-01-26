@@ -22,6 +22,10 @@ Calculable cross sectional properties include:
 * Principal angles
 * Values about the principal axes for the above properties
 
+Composite sections that consist of multiple shapes are also supported, such as those shown below. Here, the shapes shown in blue are added to the cross section, while those shown in red are subtracted cutouts.
+
+![Composite Section Example](docs/_static/multi_sect_ex1.png)
+
 
 ## Installation
 The package may be installed via `pip` by running the below command:
