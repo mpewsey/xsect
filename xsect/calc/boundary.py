@@ -1,6 +1,6 @@
 from __future__ import division
 import numpy as np
-from ._plt import plt
+import matplotlib.pyplot as plt
 
 __all__ = [
     'rotate2',

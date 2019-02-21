@@ -1,6 +1,6 @@
 from __future__ import division
 import numpy as np
-from ._plt import plt
+import matplotlib.pyplot as plt
 from .boundary import TOL, area, centroid, inertias, close_points, rotate2
 
 __all__ = [
