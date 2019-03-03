@@ -4,7 +4,7 @@ from .query_db import *
 
 def test_query_aisc():
     # Bad version
-    with pytest.raises(KeyError):
+    with pytest.raises(ValueError):
         odict = query_aisc('L8x8x1-1/8', metric=False, version='bad_version')
 
 

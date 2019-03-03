@@ -1,16 +1,28 @@
+import re
 import pandas as pd
-from ._make_db import DB_CONNECTION
+from .config_db import DB_CONNECTION
 
-__all__ = ['query_aisc', 'query_aisc_shapes', 'filter_aisc']
+__all__ = [
+    'original_names',
+    'query_aisc',
+    'query_aisc_shapes',
+    'filter_aisc',
+]
 
 
-AISC_TABLES = {
-    # version -> True=metric, False=imperial
-    '15.0': {
-        True: 'aisc_metric_15_0',
-        False: 'aisc_imperial_15_0'
-    }
-}
+def original_names(names):
+    """
+    Returns the original names.
+
+    Parameters
+    ----------
+    names : list
+        A list of string names.
+    """
+    if len(names) > 0 and isinstance(names[0], (list, tuple)):
+        names = [x[0] for x in names]
+
+    return [re.sub('_+$', '', x) for x in names]
 
 
 def _aisc_table(metric, version):
@@ -27,9 +39,18 @@ def _aisc_table(metric, version):
         will be used.
     """
     if version is None:
+        # Use the latest version
         version = '15.0'
 
-    return AISC_TABLES[version][metric]
+    # Return the name of the version table
+    if version == '15.0':
+        if metric:
+            return 'aisc_metric_15_0'
+        else:
+            return 'aisc_imperial_15_0'
+
+    else:
+        raise ValueError('Version {!r} not found.'.format(version))
 
 
 def query_aisc(name, metric=False, version=None):
@@ -54,13 +75,14 @@ def query_aisc(name, metric=False, version=None):
     statement = "SELECT * FROM {} WHERE UPPER(name)='{}';".format(table, name)
     cursor = DB_CONNECTION.execute(statement)
 
-    header = [x[0][:-1] if x[0].endswith('_') else x[0] for x in cursor.description]
+    header = original_names(cursor.description)
     row = cursor.fetchone()
 
     if not row:
         raise ValueError('Shape {} not found.'.format(name))
 
     odict = {k: x for k, x in zip(header, row) if x is not None}
+
     return odict
 
 
@@ -90,6 +112,7 @@ def query_aisc_shapes(shape=None, metric=False, version=None):
         statement = "SELECT name FROM {} WHERE UPPER(type)='{}';".format(table, shape)
 
     cursor = DB_CONNECTION.execute(statement)
+
     return cursor.fetchall()
 
 
@@ -125,7 +148,9 @@ def filter_aisc(conditions, order=[], columns=[], metric=False, version=None):
     statement = "SELECT {} FROM {} WHERE {} {};".format(columns, table, where, order)
 
     cursor = DB_CONNECTION.execute(statement)
-    header = [x[0][:-1] if x[0].endswith('_') else x[0] for x in cursor.description]
+
+    header = original_names(cursor.description)
 
     df = pd.DataFrame(cursor.fetchall(), columns=header)
+
     return df
