@@ -13,6 +13,7 @@ def test_repr():
 def test_from_points():
     add = cruciform_points(8, 8, 1.125)
     CrossSection.from_points('4L8x8x1.125', add)
+    CrossSection.from_points('4L8x8x1.125', add, include_meta=False)
 
 
 def test_from_aisc_latest():
@@ -46,6 +47,10 @@ def test_from_aisc_latest():
     # Round
     xsect = CrossSection.from_aisc('Pipe26STD', metric=False, version='15.0')
     assert hasattr(xsect, 'is_round')
+
+    # Bad name
+    with pytest.raises(ValueError):
+        CrossSection.from_aisc('bad_name', metric=True)
 
 
 def test_from_aisc_v15_0():
