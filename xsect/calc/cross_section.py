@@ -128,12 +128,16 @@ class CrossSection():
         CrossSection(name='4L8x8x1.125', ...)
         """
         odict = multi_section_summary(add, subtract)
+
+        # Set additional properties
         odict['name'] = name
         odict['is_round'] = is_round
         odict.update(kwargs)
 
+        # Create the object
         xsect = cls(**odict)
 
+        # Clear meta dictionary
         if not include_meta:
             xsect.meta.clear()
 
@@ -167,13 +171,18 @@ class CrossSection():
         CrossSection(name='L8X8X1-1/8', area=16.8, unit_weight=56.9, ...)
         """
         odict = query_aisc(name, metric, version)
+
+        # Set additional properties
         odict['inertia_j'] = odict['inertia_x'] + odict['inertia_y']
 
-        if odict['type'] == 'PIPE':
+        # If pipe, set to round
+        if odict['Type'].upper() == 'PIPE':
             odict['is_round'] = True
 
+        # Create the object
         xsect = cls(**odict)
 
+        # Clear meta dictionary
         if not include_meta:
             xsect.meta.clear()
 

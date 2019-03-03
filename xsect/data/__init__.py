@@ -37,8 +37,8 @@ Building the Database
 =====================
 Developers adding or modifying data in the database should modify the
 `_make_db.py` file in the data submodule. Files on which this script depend
-should be placed in the data folder but not be included in any package
-distributions.
+should be hosted at permanent publicly available location, e.g. a Google Sheets
+document.
 
 During development, this script may be run to rebuild the database completely
 from scratch by running the following command from the root directory:
@@ -52,4 +52,5 @@ The database itself should be included with all package distributions
 such that the end user does not need to build the database themselves.
 """
 
+from .config_db import *
 from .query_db import *
